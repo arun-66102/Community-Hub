@@ -1,0 +1,138 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      UserRole @default(VOLUNTEER)
+  phone     String?
+  address   String?
+  latitude  Float?
+  longitude Float?
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  helpRequests     HelpRequest[]
+  volunteeredHelps HelpRequestVolunteer[]
+  ngo              NGO?
+
+  @@map("users")
+}
+
+model NGO {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  email       String   @unique
+  phone       String?
+  address     String?
+  latitude    Float?
+  longitude   Float?
+  website     String?
+  avatar      String?
+  verified    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("ngos")
+}
+
+model HelpRequest {
+  id          String      @id @default(cuid())
+  title       String
+  description String
+  category    HelpCategory
+  urgency     UrgencyLevel
+  status      RequestStatus @default(OPEN)
+  latitude    Float
+  longitude   Float
+  address     String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  resolvedAt  DateTime?
+
+  // Relations
+  requesterId String
+  requester   User   @relation(fields: [requesterId], references: [id])
+  volunteers  HelpRequestVolunteer[]
+
+  @@map("help_requests")
+}
+
+model HelpRequestVolunteer {
+  id           String   @id @default(cuid())
+  status       VolunteerStatus @default(PENDING)
+  message      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  helpRequestId String
+  helpRequest   HelpRequest @relation(fields: [helpRequestId], references: [id])
+  volunteerId   String
+  volunteer     User        @relation(fields: [volunteerId], references: [id])
+
+  @@unique([helpRequestId, volunteerId])
+  @@map("help_request_volunteers")
+}
+
+enum UserRole {
+  PERSON_IN_NEED
+  VOLUNTEER
+  NGO
+}
+
+enum HelpCategory {
+  FOOD
+  SHELTER
+  MEDICAL
+  TRANSPORTATION
+  CLOTHING
+  FINANCIAL
+  EMOTIONAL_SUPPORT
+  ELDER_CARE
+  CHILD_CARE
+  DISASTER_RELIEF
+  EDUCATION
+  OTHER
+}
+
+enum UrgencyLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum RequestStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum VolunteerStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  COMPLETED
+}
