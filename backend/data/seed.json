@@ -1,0 +1,65 @@
+{
+  "helpRequests": [
+    {
+      "id": "1",
+      "title": "Need food supplies for elderly neighbors",
+      "description": "Looking for volunteers to help deliver groceries to elderly residents in downtown area.",
+      "category": "food",
+      "urgency": "medium",
+      "location": {
+        "lat": 40.7128,
+        "lng": -74.006,
+        "address": "New York, NY"
+      },
+      "requester": {
+        "name": "Sarah Johnson",
+        "role": "needsHelp"
+      },
+      "volunteers": [],
+      "status": "open",
+      "createdAt": "2023-09-01T10:00:00.000Z",
+      "contactInfo": "sarah.j@email.com"
+    },
+    {
+      "id": "2",
+      "title": "Emergency shelter needed",
+      "description": "Family of 4 needs immediate temporary housing due to fire damage.",
+      "category": "housing",
+      "urgency": "critical",
+      "location": {
+        "lat": 40.7589,
+        "lng": -73.9851,
+        "address": "Manhattan, NY"
+      },
+      "requester": {
+        "name": "Mike Rodriguez",
+        "role": "needsHelp"
+      },
+      "volunteers": [],
+      "status": "open",
+      "createdAt": "2023-09-02T12:30:00.000Z",
+      "contactInfo": "mike.r@email.com"
+    },
+    {
+      "id": "3",
+      "title": "Medical transport assistance",
+      "description": "Need help getting to medical appointments. Wheelchair accessible vehicle required.",
+      "category": "medical",
+      "urgency": "high",
+      "location": {
+        "lat": 40.7505,
+        "lng": -73.9934,
+        "address": "Times Square, NY"
+      },
+      "requester": {
+        "name": "Emma Davis",
+        "role": "needsHelp"
+      },
+      "volunteers": [],
+      "status": "open",
+      "createdAt": "2023-09-03T09:15:00.000Z",
+      "contactInfo": "emma.d@email.com"
+    }
+  ],
+  "users": []
+}
