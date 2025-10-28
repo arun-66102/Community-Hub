@@ -189,13 +189,6 @@ src/
 - [ ] Social media integration
 - [ ] Offline support with service workers
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For support, email support@communityhelpHub.org or join our community Discord server.
 
 ## Acknowledgments
 
