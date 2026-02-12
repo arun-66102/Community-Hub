@@ -192,7 +192,6 @@ src/
 
 ## Acknowledgments
 
-- Built with ❤️ for community impact
 - Leaflet for excellent mapping capabilities
 - Tailwind CSS for beautiful, responsive design
 - React community for amazing tools and libraries
